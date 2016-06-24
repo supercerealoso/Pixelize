@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Pixeles</title>
+        <style>
+            #show {
+                display:none;
+            }
+            #start {
+                display:none;
+            }
+            #head {
+                max-width: 60px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="text-center">
+                <img id="head" src="data:image/png;base64,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"/>
+                <br/><h1>Pixelize</h1>
+            </div>
+            Pixel size: <input class="form-control" id="size" type="number" value="3"/><br/>
+            Only 6-bit colors (median cut): <input type="checkbox" id ="bit" checked> (Uncheck at your own risk)<br/>
+            <input class="form-control" id="pic" type="file"/><br/>
+            <input class="form-control" id="start" type="button" value="Begin"/><br/><br/>
+            <div class="text-center">
+                <img id="show" src=""/>
+                <canvas id="mod"></canvas><br/>
+                <canvas id="mod2"></canvas><br/>
+                <div id="res"></div>
+            </div>
+        </div>
+        <script>
+            // loading the image
+            document.getElementById('pic').onchange = function(evt) {
+                var tgt = evt.target || window.event.srcElement, files = tgt.files;
+                if (FileReader && files && files.length) {
+                    var fr = new FileReader();
+                    fr.onload = function() {
+                        document.getElementById('show').onload = function() {
+                            showButton();
+                        };
+                        document.getElementById('show').src = fr.result;
+                    };
+                    fr.readAsDataURL(files[0]);
+                }
+            };
+
+            //show the button when an image is selected
+            function showButton() {
+                document.getElementById('start').style.display = 'block';
+            }
+
+            //begin
+            document.getElementById('start').onclick = function(e) {
+                var img = document.getElementById('show');
+                check(img);
+            };
+
+            //returns the index of value or the index where it should be
+            function binarySearch(array, value) {
+                var min = 0;
+                var max = array.length - 1;
+                var i;
+                while (min <= max) {
+                    i = Math.floor((min + max) / 2);
+                    if (array[i] < value) {
+                        min = i + 1;
+                    }
+                    else if (array[i] > value) {
+                        max = i - 1;
+                    }
+                    else {
+                        return i;
+                    }
+                }
+                return min;
+            }
+
+            //inserts a value in order
+            function insertInOrder(array, value) {
+                if (array.length !== 0) {
+                    var i = binarySearch(array, value);
+                    if (!(array[i] === value)) {
+                        array.splice(i, 0, value);
+                    }
+                } else
+                    array.push(value);
+            }
+
+            //less color resolution
+            function eightBit(r, g, b) {
+                r = Math.round((r + 1) / 64) * 64 - 1; //32 instead of 64 in real life
+                g = Math.round((g + 1) / 64) * 64 - 1; //32
+                b = Math.round((b + 1) / 64) * 64 - 1;
+                if (r < 0)
+                    r = 0;
+                if (g < 0)
+                    g = 0;
+                if (b < 0)
+                    b = 0;
+                return [r, g, b];
+            }
+
+            //use coordintates rather than index
+            function coordinates(x, y, w) {
+                return (x * w + y) * 4;
+            }
+
+            //get the decimal color index
+            function getColor(r, g, b) {
+                var color = (r * 256 * 256) + (g * 256) + b;
+                return color;
+            }
+
+            //get the rgb from the decimal color
+            function getRgb(color) {
+                var temp = color;
+                var r = Math.floor(temp / (256 * 256));
+                temp = temp - r * 256 * 256;
+                var g = Math.floor(temp / (256));
+                temp = temp - g * 256;
+                var b = temp;
+                return [r, g, b];
+            }
+
+            //all
+            function check(image) {
+                //draw image
+                var finalPalette = [];
+                var finalFrequency = [];
+
+                var canvas = document.getElementById('mod');
+                canvas.height = image.height;
+                canvas.width = image.width;
+                var context = canvas.getContext('2d');
+                context.drawImage(image, 0, 0);
+                var imgData = context.getImageData(0, 0, image.width, image.height);
+                var data = imgData.data;
+
+                var ss = parseInt(document.getElementById('size').value);
+                var bit = document.getElementById('bit').checked;
+                var lh = image.height - (image.height % ss);
+                var lw = image.width - (image.width % ss);
+                var w = image.width;
+
+                var canvas2 = document.getElementById('mod2');
+                canvas2.height = lh / ss;
+                canvas2.width = lw / ss;
+                var context2 = canvas2.getContext('2d');
+                var imgData2 = context2.getImageData(0, 0, lw / ss, lh / ss);
+                var data2 = imgData2.data;
+
+                //less color resolution
+                if (bit) {
+                    for (var i = 0; i < data.length; i += 4) {
+                        var r = data[i];
+                        var g = data[i + 1];
+                        var b = data[i + 2];
+                        var e = eightBit(r, g, b);
+                        data[i] = e[0];
+                        data[i + 1] = e[1];
+                        data[i + 2] = e[2];
+                    }
+                }
+
+                //pixelize
+                canvas.height = lh;
+                canvas.width = lw;
+                for (var oi = 0; oi < lh; oi += ss) {
+                    for (var oj = 0; oj < lw; oj += ss) {
+                        //check a square
+                        var palette = [];
+                        var frequency = [];
+                        var mainColor = 0;
+                        var mainColorFreq = 0;
+                        var w1 = oj;
+                        var w2 = oj + ss;
+                        var h1 = oi;
+                        var h2 = oi + ss;
+                        for (var i = h1; i < h2; i++) {
+                            for (var j = w1; j < w2; j++) {
+                                var c = coordinates(i, j, w);
+                                var color = getColor(data[c], data[c + 1], data[c + 2]);
+                                insertInOrder(palette, color);
+                            }
+                        }
+                        frequency = new Array(palette.length);
+                        for (var i = 0; i < frequency.length; i++) {
+                            frequency[i] = 0;
+                        }
+                        for (var i = h1; i < h2; i++) {
+                            for (var j = w1; j < w2; j++) {
+                                var c = coordinates(i, j, w);
+                                var color = getColor(data[c], data[c + 1], data[c + 2]);
+                                var k = binarySearch(palette, color);
+                                frequency[k]++;
+                            }
+                        }
+                        for (var i = 0; i < frequency.length; i++) {
+                            if (frequency[i] > mainColorFreq) {
+                                mainColorFreq = frequency[i];
+                                mainColor = palette[i];
+                            }
+                        }
+                        insertInOrder(finalPalette, mainColor);
+                        mainColor = getRgb(mainColor);
+                        var c2 = coordinates(Math.floor(oi / ss), Math.floor(oj / ss), lw / ss);
+                        data2[c2] = mainColor[0];
+                        data2[c2 + 1] = mainColor[1];
+                        data2[c2 + 2] = mainColor[2];
+                        data2[c2 + 3] = 255;
+                        for (var i = h1; i < h2; i++) {
+                            for (var j = w1; j < w2; j++) {
+                                var c = coordinates(i, j, w);
+                                data[c] = mainColor[0];
+                                data[c + 1] = mainColor[1];
+                                data[c + 2] = mainColor[2];
+                            }
+                        }
+                    }
+                }
+
+                //new frequency
+                finalFrequency = new Array(finalPalette.length);
+                for (var i = 0; i < finalFrequency.length; i++) {
+                    finalFrequency[i] = 0;
+                }
+                for (var i = 0; i < data2.length; i += 4) {
+                    var color = getColor(data2[i], data2[i + 1], data2[i + 2]);
+                    var j = binarySearch(finalPalette, color);
+                    finalFrequency[j]++;
+                }
+
+                //show
+                context.putImageData(imgData, 0, 0);
+                context2.putImageData(imgData2, 0, 0);
+                var res = document.getElementById('res');
+                res.innerHTML = "";
+                for (var i = 0; i < finalPalette.length; i++) {
+                    var color = finalPalette[i].toString(16);
+                    while (color.length < 6)
+                        color = '0' + color;
+                    res.innerHTML = res.innerHTML +
+                            '<span style="background-color:#' +
+                            color + '">' + color + '</span> : ' +
+                            finalFrequency[i] + '<br/>';
+                }
+                alert('done!');
+            }
+        </script>
+    </body>
+</html>
