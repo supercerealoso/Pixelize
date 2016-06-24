@@ -1,2 +1,2 @@
 # Pixelize
-Pixelizing Images
+Project to pixelize images.
